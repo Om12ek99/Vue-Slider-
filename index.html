@@ -30,6 +30,65 @@
         <title>Carusel vue</title>
     </head>
 <body>
-    
+    <div id="app">
+        <main>
+          <div class="container-fluid p-5">
+            <div class="row text-center">
+              <div class="col-12 p-3" id="my-before-carousel"></div>
+  
+              <div class="col-12 p-5">
+                <div
+                  class="my-carousel-container d-flex flex-column px-5"
+                  id="my-carousel">
+                  <div class="my-carousel-images">
+                    <!-- immagine -->
+                    <div class="my-carousel-item active" carousel-item="1">
+                      <img
+                        class="img-fluid"
+                        :src="images[active].image"
+                        :alt="images[active].title">
+                      <div class="item-description px-3">
+                        <h2>{{images[active].title}}</h2>
+                        <p>
+                          {{images[active].text}}
+                        </p>
+                      </div>
+                    </div>
+                    <!-- /immagine -->
+  
+                  </div>
+                  <div class="my-thumbnails position-relative">
+                    <!-- prev -->
+                    <div @click="active === 0 ? active = 4 : active--" class="my-previous position-absolute">
+                      <span class="my-prev-hook"></span>
+                    </div>
+                    <!-- next -->
+                    <div @click="active === 4 ? active = 0 : active++"
+                      class="my-next position-absolute">
+                      <span class="my-next-hook"></span>
+                    </div>
+                    <!-- thumbnails  -->
+                    <img @click="active = i" v-for="(curImage,i) in images" class="img-fluid my-thumbnail"
+                    :src="curImage.image" :alt="curImage.title">
+  
+  
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-12 p-3" id="my-after-carousel">
+                <button id="my-order-button" class="btn btn-primary">
+                  Inverti l'ordine di scorrimento
+                </button>
+                <button id="my-stop-button" class="btn btn-primary">
+                  Interrompi / Fai ripartire lo scorrimento
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <!-- script -->
+      <script src="./js/main.js"></script>
 </body>
 </html>
